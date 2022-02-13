@@ -1,0 +1,79 @@
+:root {
+    --primary: #ff556d;
+    --secondary: #424761;
+    --light: #ddd6d1;
+}
+
+html,
+body {
+    color: var(--primary) !important;
+}
+
+.bg_60 {
+    background-color: var(--primary) !important;
+}
+
+.bg_30 {
+    background-color: var(--secondary) !important;
+}
+
+.bg_10 {
+    background-color: var(--light) !important;
+}
+
+.text_60 {
+    color: var(--primary) !important;
+}
+
+.text_30 {
+    color: var(--secondary) !important;
+}
+
+.text_10 {
+    color: var(--light) !important;
+}
+
+a {
+    color: var(--primary);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary) !important;
+    color: var(--secondary) !important;
+}
+
+.sidebar-nav > li a {
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+.sidebar-nav > li > a:hover {
+    color: var(--primary) !important;
+    background: var(--secondary) !important;
+}
+
+.sidebar-nav > li.active > a {
+    color: var(--primary) !important;
+    background: var(--secondary) !important;
+}
+
+.skin-base .sidebar {
+    background-color: var(--light) !important;
+    box-shadow: 1px 0 1px rgba(216, 222, 230, 0.25),
+        2px 0 2px rgba(216, 222, 230, 0.2), 4px 0 4px rgba(216, 222, 230, 0.15),
+        8px 0 8px rgba(216, 222, 230, 0.1),
+        16px 0 16px rgba(216, 222, 230, 0.05);
+}
+
+.skin-base .sidebar-footer {
+    background-image: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.5) 50%,
+        var(--light)
+    );
+}
+
+.btn .btn-primary {
+    border-color: var(--primary) !important;
+    background: var(--primary) !important;
+}

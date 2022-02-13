@@ -2,88 +2,55 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
+    @include('includes._meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>{{ config('app.name') }}</title>
+    @include('includes._css')
 </head>
 
 <body>
-    <div id="app">
-        <nav class="bg-white shadow-sm navbar navbar-expand-md navbar-light">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 2000;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="mr-auto navbar-nav">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="ml-auto navbar-nav">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a class="navbar-brand" href="">
+                        <img src="{{ url('/assets/images/logo.png') }}" alt="" width="30">
+                    </a>
+                    <ul class="mb-2 ms-auto navbar-nav mb-lg-0" style="float: left;">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="">Home</a>
+                        </li>
+                        @if (Route::has('login'))
+                            @auth
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a href="{{ route('home') }}" class="nav-link">Home</a>
                                 </li>
-                            @endif
-
-                            @if (Route::has('register'))
+                            @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a href="{{ route('login') }}" class="nav-link">Log in</a>
                                 </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->email }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                                @if (Route::has('user.register'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('register') }}" class="nav-link">Register</a>
+                                    </li>
+                                @endif
+                            @endauth
+                        @endif
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    </header>
+    <main class="py-4">
+        @yield('content')
+    </main>
+    @include('includes._footer')
 </body>
+@include('includes._js')
 
 </html>
